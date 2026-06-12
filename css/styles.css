@@ -1,0 +1,663 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* HEADER Y NAVEGACIÓN */
+header {
+    width: 100%;
+    background: #a777e3;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header nav button {
+    padding: 12px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    flex: 1;
+    margin: 0 10px;
+}
+
+header nav button:hover {
+    background-color: white;
+    color: #a777e3;
+    transform: translateY(-3px);
+}
+
+/* Contenedor que agrupa logo y título */
+.logo-izquierda {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 30px;           
+    padding: 20px;    
+}
+
+.logo {
+    width: 130px;    
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.logo-izquierda h1 {
+    font-size: 3.5rem;      
+    letter-spacing: -1px;
+}
+
+/* TÍTULO CATÁLOGO */
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* BARRA DE CONTROLES Y CONTADOR */
+.barra-controles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.contador-texto {
+    font-weight: bold;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* CONTROLES */
+.controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* Inputs, selects y buttons dentro de los controles */
+.controles input, .controles select, .controles button, 
+.contenidoArtista input, .contenidoArtista select, .contenidoArtista button, 
+.contenidoLanzamiento input, .contenidoLanzamiento select, .contenidoLanzamiento button {
+    border: 2px solid #a777e3;
+    border-radius: 12px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem !important;
+    padding: 12px 20px !important;
+    height: 50px;
+    box-sizing: border-box;
+    outline: none;
+
+}
+
+.controles, 
+.contenidoArtista, 
+.contenidoLanzamiento {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    margin-top: 0 !important;
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.controles button, .contenidoArtista button, .contenidoLanzamiento button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+}
+
+.controles button:hover, .contenidoArtista button:hover, .contenidoLanzamiento button:hover {
+    background-color: #ff9a8d;
+}
+
+/* CATÁLOGO (CUADRÍCULA) */
+#contenidoCatalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Ajusta automáticamente el número de columnas según el tamaño de la pantalla */
+    gap: 25px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tarjeta-album {
+    background-color: #a777e3; 
+    color: white;              
+    border: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.tarjeta-album:hover {
+    background-color: #9565d0; 
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+.imagen-tarjeta {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.tarjeta-album h3, .tarjeta-album p {
+    color: white;
+}
+
+.tarjeta-album h3 {
+    min-height: 50px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    color: #666;
+    grid-column: 1 / -1; /* Hace que el mensaje ocupe toda la fila del grid */
+    font-size: 1.2em;
+    padding: 20px;
+}
+
+/* TARJETAS */
+.tarjeta-detalles {
+    display: none;
+    position: fixed; /* Fijo para que siempre esté visible en la pantalla */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px); /* Efecto de desenfoque para el fondo */
+}
+
+.contenido-tarjeta {
+    background: white;
+    margin: 10% auto;
+    padding: 30px;
+    width: 60%;
+    border-radius: 20px;
+    position: relative; /* Para posicionar el botón de cerrar */
+    color: #333;
+}
+
+.infoTarjeta {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
+.imagen-modal {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    flex-shrink: 0;
+}
+
+.infoTarjeta div {
+    flex: 1;
+    color: #333;
+}
+
+#contenidoTarjeta button {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: #ff6f61;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* SECCIÓN ARTISTAS */
+#artistas {
+    background: #f9f9fb;
+    width: 100%;
+}
+
+.contenidoArtista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#tablaArtistas {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 40px auto;
+    border-collapse: collapse;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-spacing: 0 15px; /* Elimina el espacio entre celdas */
+    border-collapse: separate;
+}
+
+/* Encabezados de la tabla */
+#tablaArtistas th {
+    background-color: #a777e3;
+    color: white;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border: none;
+}
+
+/* Celdas del cuerpo */
+#tablaArtistas td {
+    padding: 20px;
+    text-align: center; 
+    border: none;
+    border-bottom: 1px solid #f4f4f4;
+    color: #444;
+    background: #ffffff;
+}
+
+#tablaArtistas tbody tr {
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+    transition: all 0.3s ease;
+}
+
+#tablaArtistas tbody tr:hover {
+    transform: scale(1.01); /* Efecto de zoom al pasar el ratón */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+#tablaArtistas button {
+    padding: 6px 12px;
+    margin: 0 5px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+#tablaArtistas button:hover {
+    filter: brightness(1.1); /* Aumenta el brillo al pasar el ratón */
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+}
+
+.icono-genero {
+    width: 100px;        
+    height: 100px;
+    object-fit: cover;   /* Para que la imagen no se deforme */
+    vertical-align: middle;
+    border-radius: 30px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Estilo base de la etiqueta */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Colores según el estado */
+.badge.activo {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge.en-gira {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge.retirado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Resaltado para el nombre */
+#tablaArtistas td:first-child {
+    font-weight: 800;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+#tablaArtistas button:first-child { 
+    background: #ffc107; 
+    color: white; 
+} 
+
+#tablaArtistas button:last-child { 
+    background: #ff6f61; 
+    color: white; 
+}
+
+/* SECCIÓN AGENDA DE LANZAMIENTOS  */
+#agenda {
+    background-color: #f9f9fb;
+    width: 100%;
+}
+
+.contenidoLanzamiento {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.filtroLanzamientos {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Grid de Trimestres */
+.trimestres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.bloque-trimestre {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-top: 5px solid #a777e3;
+}
+
+.bloque-trimestre h3 {
+    color: #a777e3;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.info-trimestre {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.lista-lanzamientos {
+    list-style: none;
+}
+
+.lista-lanzamientos li {
+    background: #fdfdfd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    border-left: 10px solid #a777e3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Estilo para cuando el lanzamiento ya se ha realizado */
+.lista-lanzamientos li.lanzado {
+    text-decoration: line-through;
+    opacity: 0.6;
+    background: #eeeeee;
+}
+
+/* Botones dentro de la lista */
+.lista-lanzamientos button {
+    background: #a777e3;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Efecto hover para botones de la lista */
+.lista-lanzamientos button:hover {
+    background-color: #8e5cb8;
+    transform: scale(1.05);
+}
+
+.lista-lanzamientos button.btn-marcar {
+    background-color: #4caf50;
+}
+
+.lista-lanzamientos button.btn-eliminar {
+    background-color: #ff6f61;
+}
+
+.contenedor-imagen-agenda {
+    margin-bottom: 10px;
+}
+
+.contenedor-info-agenda {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+/* Botones abajo */
+.contenedor-botones-agenda {
+    display: flex;
+    gap: 5px; 
+}
+
+.filtroLanzamientos select {
+    padding: 10px 20px;
+    border: 2px solid #a777e3;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+}
+
+.lista-lanzamientos li {
+    transition: all 0.2s ease;
+}
+
+.lista-lanzamientos li:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Transicciones*/
+/* Transición suave al cambiar de sección */
+section {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Transición de opacidad y posición */
+    opacity: 1;
+}
+
+/* Animación de aparición para elementos nuevos (li, tarjetas) */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplicar la animación a las nuevas tarjetas o elementos de lista */
+.tarjeta-album, 
+.lista-lanzamientos li {
+    animation: aparecer 1.5s ease-out forwards; 
+}
+
+/* Transición de eliminación */
+.eliminando {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #666;
+    background: #a777e3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header nav { flex-direction: column; }
+    .contenido-tarjeta { width: 90%; }
+    .infoTarjeta { flex-direction: column; text-align: center; }
+    .imagen-modal { width: 100%; height: auto; }
+}
+
+@media (max-width: 768px) {
+    .logo-izquierda { flex-direction: column; text-align: center; }
+    .logo-grande { width: 80px; }
+    .logo-izquierda h1 { font-size: 2.2rem; }
+}
+
+/* CSS PARA MODO OSCURO */
+
+[data-theme="dark"] {
+    background-color: #121212 !important;
+    color: #d1d1d1 !important;
+}
+
+/* Header, footer, tarjetas y th */
+[data-theme="dark"] header, 
+[data-theme="dark"] footer,
+[data-theme="dark"] .tarjeta-album,
+[data-theme="dark"] th {
+    background: #2d1b4e !important; 
+    background-image: none !important;
+}
+
+/* Contenedores y Tarjetas */
+[data-theme="dark"] section,
+[data-theme="dark"] .bloque-trimestre,
+[data-theme="dark"] #tablaArtistas,
+[data-theme="dark"] #tablaArtistas td,
+[data-theme="dark"] .contenidoArtista,
+[data-theme="dark"] .info-trimestre,
+[data-theme="dark"] .controles,
+[data-theme="dark"] .contenidoLanzamiento {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Filas de tablas y elementos de lista */
+[data-theme="dark"] #tablaArtistas tbody tr,
+[data-theme="dark"] .lista-lanzamientos li {
+    background-color: #252525 !important;
+}
+
+/* Formulario */
+[data-theme="dark"] input, 
+[data-theme="dark"] select {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+}
+
+/* Mantener el ROJO de los botones */
+[data-theme="dark"] button {
+    filter: brightness(0.9); 
+}
+
+/* Títulos */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] .contador-texto {
+    color: #ffffff !important;
+}
+
+/* Contenido de las tarjetas */
+
+[data-theme="dark"] .contenido-tarjeta {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #444 !important;
+}
+
+[data-theme="dark"] .contenido-tarjeta * {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .contenido-tarjeta button {
+    background-color: #ff6f61 !important;
+    color: white !important;
+    border: none !important;
+    filter: none !important; 
+}
+
+[data-theme="dark"] .contenido-tarjeta button:hover {
+    background-color: #ff9a8d !important;
+}

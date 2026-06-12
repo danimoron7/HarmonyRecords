@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Records</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-izquierda">
+            <img src="img/logo.png" alt="Harmony Records Logo" class="logo">
+            <h1>Harmony Records</h1>
+        </div>
+        <nav>
+            <button onclick="mostrarSeccion('catalogo')">Catálogo de Álbumes</button>
+            <button onclick="mostrarSeccion('artistas')">Roster de Artistas</button>
+            <button onclick="mostrarSeccion('agenda')">Agenda de Lanzamientos</button>
+        
+            <button id="cambiarModo" onclick="cambiarModo()">Modo Claro / Oscuro</button>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section id="catalogo" class="seccion">
+            <h2>Catálogo de Álbumes</h2>
+            <div class="barra-controles">
+                <div class="controles">
+                    <input type="text" id="buscador" placeholder="Buscar por título o artista..." oninput="filtrarCatalogo()">
+        
+                    <select id="filtroGenero" onchange="filtrarCatalogo()">
+                        <option value="todos">Todos los géneros</option>
+                        <option value="pop">Pop</option>
+                        <option value="rock">Rock</option>
+                        <option value="urbano">Urbano</option>
+                    </select>
+
+                    <button onclick="ordenarPorPuntuacion()">Ordenar por Puntuación</button>
+                </div>
+                
+                <p class="contador-texto">Álbumes mostrados: <span id="contador">0</span></p>
+            </div>
+
+            <div id="contenidoCatalogo"></div>
+
+            <div id="tarjetaDetalle" class="tarjeta-detalles">
+                <div id="contenidoTarjeta" class="contenido-tarjeta">
+                    <button onclick="cerrarModal()">Cerrar</button>
+                    <div id="infoTarjeta" class="infoTarjeta"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="artistas" class="seccion" style="display:none;">
+            <h2>Roster de Artistas</h2>
+            <div class="contenidoArtista">
+                <input type="hidden" id="actualizarPosicion" value="-1">
+
+                <input type="text" id="nombreArtista" placeholder="Nombre artístico">
+                <select id="generoArtista">
+                    <option value="" disabled selected>Selecciona un género...</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                    <option value="urbano">Urbano</option>
+                </select>
+                
+                <input type="text" id="paisArtista" placeholder="País de origen">
+                <input type="number" id="albumesArtista" placeholder="Nº álbumes publicados" min="0">
+        
+                <select id="estadoArtista">
+                    <option value="" disabled selected>Selecciona un estado...</option>
+                    <option value="activo">Activo</option>
+                    <option value="en gira">En Gira</option>
+                    <option value="retirado">Retirado</option>
+                </select>
+
+                <button onclick="guardarArtista()" id="btnGuardar">Registrar Artista</button>
+            </div>
+
+            <table id="tablaArtistas">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>País</th>
+                        <th>Nº Álbumes</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaArtistas"></tbody>
+            </table>
+        </section>
+
+        <section id="agenda" class="seccion" style="display:none;">
+            <h2>Agenda de Lanzamientos</h2>
+
+            <div class="contenidoLanzamiento">
+                <input type="text" id="tituloLanzamiento" placeholder="Título del lanzamiento">
+        
+                <select id="artistaLanzamiento">
+                    <option value="" disabled selected>Selecciona un artista activo...</option>
+                </select>
+        
+                <select id="tipoLanzamiento">
+                    <option value="" disabled selected>Selecciona un tipo...</option>
+                    <option value="álbum">Álbum</option>
+                    <option value="EP">EP</option>
+                    <option value="single">Single</option>
+                    <option value="reedición">Reedición</option>
+                </select>
+        
+                <input type="date" id="fechaLanzamiento">
+                <input type="number" id="costeLanzamiento" placeholder="Presupuesto (€)" min="0">
+                <button onclick="guardarLanzamiento()" id="btnGuardarLanzamiento">Añadir a Agenda</button>
+            </div>
+
+            <div class="filtroLanzamientos">
+                <label>Filtrar por tipo: </label>
+                <select id="filtroTipo" onchange="cargarAgenda()">
+                    <option value="todos">Todos los tipos</option>
+                    <option value="álbum">Álbum</option>
+                    <option value="EP">EP</option>
+                    <option value="single">Single</option>
+                    <option value="reedición">Reedición</option>
+                </select>
+            </div>
+
+            <div id="contenidoAgenda" class="trimestres">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harmony Records</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
