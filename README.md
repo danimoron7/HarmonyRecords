@@ -1,5 +1,4 @@
 # HarmonyRecords
-Harmony Records
 Harmony Records es una aplicación web integral diseñada para la gestión operativa de una discográfica. Permite organizar el catálogo musical, administrar el roster de artistas y planificar estratégicamente los lanzamientos anuales.
 
 Funcionalidades principales:
