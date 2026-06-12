@@ -12,7 +12,7 @@ Modo Oscuro: Interfaz adaptable para mejorar la experiencia de usuario en entorn
 
 Persistencia de datos: Uso de localStorage para garantizar que la información se mantenga guardada entre sesiones.
 
-🛠️ Tecnologías utilizadas
+Tecnologías utilizadas:
 HTML5: Estructura semántica del contenido.
 
 CSS3: Diseño responsivo, animaciones personalizadas y sistema de temas (Light/Dark).
