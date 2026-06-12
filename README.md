@@ -15,6 +15,6 @@ Persistencia de datos: Uso de localStorage para garantizar que la información s
 Tecnologías utilizadas:
 HTML5: Estructura semántica del contenido.
 
-CSS3: Diseño responsivo, animaciones personalizadas y sistema de temas (Light/Dark).
+CSS3: Diseño responsivo, animaciones personalizadas y sistema de temas (Claro/Oscuro).
 
 JavaScript: Lógica de aplicación, manipulación del DOM y persistencia de datos.
